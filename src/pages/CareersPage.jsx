@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useReveal, reveal } from '../hooks/useReveal'
 
 const CareersPage = () => {
+    const [benefitsRef, benefitsIn] = useReveal(0.1)
+    const [openingsRef, openingsIn] = useReveal(0.05)
+
     const openings = [
         {
             title: 'Full Stack Python Developer',
@@ -53,117 +57,150 @@ const CareersPage = () => {
     ]
 
     const benefits = [
-        { icon: '🏠', title: 'Remote Work', description: 'Work from anywhere with flexible hours' },
-        { icon: '📚', title: 'Learning Budget', description: 'Annual budget for courses and conferences' },
-        { icon: '🏥', title: 'Health Insurance', description: 'Comprehensive health coverage for you and family' },
-        { icon: '🎮', title: 'Fun Culture', description: 'Team events, game nights, and celebrations' },
-        { icon: '📈', title: 'Growth Path', description: 'Clear career progression and mentorship' },
-        { icon: '💰', title: 'Competitive Pay', description: 'Industry-leading compensation packages' },
+        { num: '01', title: 'Remote Work', description: 'Work from anywhere with flexible hours' },
+        { num: '02', title: 'Learning Budget', description: 'Annual budget for courses and conferences' },
+        { num: '03', title: 'Health Insurance', description: 'Comprehensive health coverage for you and family' },
+        { num: '04', title: 'Fun Culture', description: 'Team events, game nights, and celebrations' },
+        { num: '05', title: 'Growth Path', description: 'Clear career progression and mentorship' },
+        { num: '06', title: 'Competitive Pay', description: 'Industry-leading compensation packages' },
     ]
 
     return (
-        <div className="pt-24">
-            {/* Hero Section */}
-            <section className="section bg-gradient-to-br from-sky-light via-sky-medium to-sky-deep relative overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="blob w-[500px] h-[500px] bg-mint -top-32 -right-32"></div>
-                    <div className="blob w-[400px] h-[400px] bg-accent-cyan -bottom-32 -left-32 animation-delay-2000"></div>
-                </div>
+        <div>
+            {/* Page opening */}
+            <section className="relative pt-[112px] pb-10 sm:pt-[150px] sm:pb-14 lg:pt-[190px] lg:pb-20">
+                <div className="shell">
+                    <div className="eyebrow eyebrow-rule animate-fade-up">Join Our Team</div>
+                    <div className="grid lg:grid-cols-[1.2fr_.8fr] gap-10 lg:gap-[60px] items-end mt-[26px]">
+                        <div>
+                            <h1 className="display-xl max-w-[12ch] animate-fade-up stagger-1">
+                                We &amp; You.
+                            </h1>
+                            <p className="lede mt-7 max-w-[48ch] animate-fade-up stagger-2">
+                                Where will your career take you? Join a team of innovators who are passionate
+                                about building the future of technology.
+                            </p>
+                            <div className="flex flex-wrap gap-3 mt-9 animate-fade-up stagger-3">
+                                <a href="#openings" className="btn-ink">
+                                    View Open Positions
+                                    <span className="leading-none">→</span>
+                                </a>
+                                <Link to="/contact" className="btn-glass">
+                                    Send Your Resume
+                                </Link>
+                            </div>
+                        </div>
 
-                <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-                    <span className="inline-block px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm font-medium text-teal mb-6 border border-mint/30">
-                        Join Our Team
-                    </span>
-                    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-dark mb-6">
-                        We & <span className="gradient-text">You</span>
-                    </h1>
-                    <p className="text-lg text-charcoal/80 mb-8 max-w-2xl mx-auto">
-                        Where will your career take you? Join a team of innovators who are passionate
-                        about building the future of technology.
-                    </p>
-                    <a href="#openings" className="btn-primary">
-                        View Open Positions
-                    </a>
+                        <div className="rule-list animate-fade-up stagger-4">
+                            <div className="rule-row">
+                                <span className="rule-label">Open roles</span>
+                                <span className="rule-value">{openings.length}</span>
+                            </div>
+                            <div className="rule-row">
+                                <span className="rule-label">Team size</span>
+                                <span className="rule-value">60+</span>
+                            </div>
+                            <div className="rule-row">
+                                <span className="rule-label">Working model</span>
+                                <span className="rule-value">Hybrid</span>
+                            </div>
+                            <div className="flex items-center gap-2 mt-4 font-script text-[18px] text-clay/90">
+                                <span className="block animate-bob">↓</span> we respond within 24 hours
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             {/* Benefits */}
-            <section className="section bg-white">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <span className="inline-block px-4 py-2 bg-mint/10 text-mint-deep rounded-full text-sm font-medium mb-4">
-                            Why Join Us
-                        </span>
-                        <h2 className="section-title">Benefits & Perks</h2>
-                        <p className="section-subtitle">
-                            We take care of our team so they can focus on doing their best work
-                        </p>
+            <section ref={benefitsRef} className="section pt-6">
+                <div className="shell">
+                    <div className={`section-head ${reveal(benefitsIn)}`}>
+                        <h2 className="display-md max-w-[22ch]">
+                            Benefits &amp; Perks
+                        </h2>
+                        <span className="section-index">01 — Why Join Us</span>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[18px] mt-9">
                         {benefits.map((benefit, index) => (
-                            <div key={index} className="glass-card p-6 flex items-start gap-4 hover:border-mint transition-all group">
-                                <span className="text-4xl group-hover:scale-110 transition-transform">{benefit.icon}</span>
-                                <div>
-                                    <h3 className="font-display text-lg font-bold text-dark mb-1">{benefit.title}</h3>
-                                    <p className="text-sm text-charcoal/70">{benefit.description}</p>
+                            <div
+                                key={benefit.num}
+                                className={`glass-quiet glass-hover group p-[26px] ${reveal(benefitsIn)}`}
+                                style={{ transitionDelay: `${index * 80}ms` }}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <span className="mark-bar transition-transform duration-500 group-hover:scale-y-125"></span>
+                                    <span className="text-[11px] font-semibold tracking-[0.1em] text-ink/35">
+                                        {benefit.num}
+                                    </span>
                                 </div>
+                                <h3 className="font-display text-[17px] font-semibold tracking-[-0.02em] mt-[18px]">
+                                    {benefit.title}
+                                </h3>
+                                <p className="text-[14.5px] leading-[1.6] text-ink/62 mt-2.5">
+                                    {benefit.description}
+                                </p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Job Openings */}
-            <section id="openings" className="section bg-gradient-to-br from-sky-light to-white">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <span className="inline-block px-4 py-2 bg-mint/10 text-mint-deep rounded-full text-sm font-medium mb-4">
-                            Open Positions
-                        </span>
-                        <h2 className="section-title">Current Openings</h2>
-                        <p className="section-subtitle">
-                            Find your next opportunity with us
-                        </p>
+            {/* Openings */}
+            <section ref={openingsRef} id="openings" className="section pt-6">
+                <div className="shell">
+                    <div className={`section-head ${reveal(openingsIn)}`}>
+                        <h2 className="display-md max-w-[20ch]">
+                            Current Openings
+                        </h2>
+                        <span className="section-index">02 — Open Positions</span>
                     </div>
 
-                    <div className="space-y-6">
+                    <div className="flex flex-col gap-[18px] mt-9">
                         {openings.map((job, index) => (
-                            <div key={index} className="glass-card p-6 hover:border-mint transition-all group">
-                                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                            <div
+                                key={job.title}
+                                className={`glass glass-hover p-6 sm:p-7 ${reveal(openingsIn)}`}
+                                style={{ transitionDelay: `${index * 70}ms` }}
+                            >
+                                <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
                                     <div className="flex-1">
-                                        <div className="flex flex-wrap items-center gap-3 mb-2">
-                                            <h3 className="font-display text-xl font-bold text-dark">{job.title}</h3>
-                                            <span className="px-3 py-1 bg-mint/10 text-mint-deep text-xs font-medium rounded-full">
+                                        <div className="flex flex-wrap items-baseline gap-4">
+                                            <span className="text-[10.5px] font-semibold tracking-[0.14em] uppercase text-ink/45">
                                                 {job.department}
                                             </span>
+                                            <span className="text-[10.5px] font-semibold tracking-[0.14em] uppercase text-ink/35">
+                                                {job.type} · {job.location}
+                                            </span>
                                         </div>
-                                        <p className="text-charcoal/70 mb-3">{job.description}</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {job.requirements.map((req, i) => (
-                                                <span key={i} className="px-3 py-1 bg-gray-100 text-charcoal text-xs rounded-full">
+
+                                        <h3 className="display-sm mt-3.5">{job.title}</h3>
+                                        <p className="text-[15px] leading-[1.62] text-ink/65 mt-2.5 max-w-[68ch]">
+                                            {job.description}
+                                        </p>
+
+                                        <div className="flex flex-wrap gap-x-5 gap-y-1.5 mt-5 pt-4 border-t"
+                                            style={{ borderColor: 'var(--rule)' }}>
+                                            {job.requirements.map((req) => (
+                                                <span
+                                                    key={req}
+                                                    className="text-[11.5px] font-semibold tracking-[0.06em] uppercase text-ink/45"
+                                                >
                                                     {req}
                                                 </span>
                                             ))}
                                         </div>
                                     </div>
-                                    <div className="flex flex-col items-end gap-3">
-                                        <div className="flex items-center gap-4 text-sm text-charcoal/60">
-                                            <span className="flex items-center gap-1">
-                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                                {job.type}
-                                            </span>
-                                            <span className="flex items-center gap-1">
-                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                </svg>
-                                                {job.location}
-                                            </span>
-                                        </div>
-                                        <Link to="/contact" className="btn-primary text-sm">
+
+                                    <div className="flex lg:flex-col items-start lg:items-end gap-4 lg:pl-8 lg:border-l"
+                                        style={{ borderColor: 'var(--rule)' }}>
+                                        <span className="stat-figure text-[26px] text-marine">
+                                            {String(index + 1).padStart(2, '0')}
+                                        </span>
+                                        <Link to="/contact" className="btn-ink btn-sm whitespace-nowrap">
                                             Apply Now
+                                            <span className="leading-none">→</span>
                                         </Link>
                                     </div>
                                 </div>
@@ -174,18 +211,23 @@ const CareersPage = () => {
             </section>
 
             {/* CTA */}
-            <section className="section bg-gradient-dark text-white">
-                <div className="max-w-4xl mx-auto px-6 text-center">
-                    <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                        Don't See Your Role?
-                    </h2>
-                    <p className="text-white/70 mb-8 max-w-2xl mx-auto">
-                        We're always looking for talented people. Send us your resume and we'll reach out
-                        when a suitable position opens up.
-                    </p>
-                    <Link to="/contact" className="btn-primary">
-                        Send Your Resume
-                    </Link>
+            <section className="section pt-0">
+                <div className="shell">
+                    <div className="glass px-8 py-10 md:px-[30px] md:py-[26px] flex flex-wrap gap-6 items-center justify-between">
+                        <div>
+                            <h2 className="font-display text-[26px] font-semibold tracking-[-0.03em]">
+                                Don't See Your Role?
+                            </h2>
+                            <p className="text-[15px] leading-[1.6] text-ink/65 mt-2 max-w-[56ch]">
+                                We're always looking for talented people. Send us your resume and we'll
+                                reach out when a suitable position opens up.
+                            </p>
+                        </div>
+                        <Link to="/contact" className="btn-ink">
+                            Send Your Resume
+                            <span className="leading-none">→</span>
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>

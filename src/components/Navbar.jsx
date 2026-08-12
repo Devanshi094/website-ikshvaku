@@ -10,111 +10,133 @@ const Navbar = () => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50)
         }
-        window.addEventListener('scroll', handleScroll)
+        window.addEventListener('scroll', handleScroll, { passive: true })
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    // Lock the page while the mobile sheet is open
+    useEffect(() => {
+        document.body.style.overflow = isMobileMenuOpen ? 'hidden' : ''
+        return () => { document.body.style.overflow = '' }
+    }, [isMobileMenuOpen])
 
     const navLinks = [
         { name: 'Home', href: '/' },
         { name: 'Services', href: '/services' },
+        { name: 'Projects', href: '/projects' },
         { name: 'About', href: '/about' },
         { name: 'Careers', href: '/careers' },
         { name: 'Contact', href: '/contact' },
     ]
 
-    // Check if we're on home page (has video background)
-    const isHomePage = location.pathname === '/'
-
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? 'bg-white/95 backdrop-blur-xl shadow-lg py-3'
-                : isHomePage
-                    ? 'bg-dark/30 backdrop-blur-md py-5'
-                    : 'bg-white/80 backdrop-blur-md py-5'
-            }`}>
-            <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-                {/* Logo */}
-                <Link to="/" className="flex items-center gap-3 group">
-                    <div className="w-10 h-10 animate-float">
-                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="20" cy="20" r="18" stroke="url(#logo-grad)" strokeWidth="3" />
-                            <path d="M12 20L18 14L24 20L18 26L12 20Z" fill="url(#logo-grad)" />
-                            <path d="M20 12L26 18L20 24L14 18L20 12Z" fill="url(#logo-grad)" fillOpacity="0.6" />
-                            <defs>
-                                <linearGradient id="logo-grad" x1="0" y1="0" x2="40" y2="40">
-                                    <stop offset="0%" stopColor="#4DB6AC" />
-                                    <stop offset="100%" stopColor="#00897B" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                    <span className={`font-display text-xl font-bold transition-colors ${isScrolled || !isHomePage ? 'gradient-text' : 'text-white'
-                        }`}>Ikshvaku</span>
+        <header className="fixed top-3 sm:top-[18px] left-0 right-0 z-[140] flex justify-center px-4 sm:px-6 lg:px-10 pointer-events-none">
+            <nav
+                className="pointer-events-auto w-full max-w-[1200px] flex items-center gap-4 lg:gap-7 rounded-[14px] pl-[14px] sm:pl-[18px] pr-2 sm:pr-3 py-2.5 sm:py-[11px] transition-all duration-500"
+                style={{
+                    background: isScrolled ? 'rgba(255,255,255,.78)' : 'rgba(255,255,255,.62)',
+                    backdropFilter: 'blur(22px) saturate(150%)',
+                    WebkitBackdropFilter: 'blur(22px) saturate(150%)',
+                    border: '1px solid rgba(255,255,255,.8)',
+                    boxShadow: isScrolled
+                        ? '0 1px 0 rgba(255,255,255,.9) inset, 0 14px 40px -26px rgba(25,26,31,.6)'
+                        : '0 1px 0 rgba(255,255,255,.9) inset, 0 10px 30px -22px rgba(25,26,31,.5)',
+                }}
+            >
+                {/* Logo — blue bar + wordmark */}
+                <Link to="/" className="flex items-center gap-2.5 mr-auto group min-w-0">
+                    <span className="block w-[9px] sm:w-[11px] h-5 sm:h-6 bg-marine flex-shrink-0 transition-transform duration-500 group-hover:scale-y-110"></span>
+                    <span className="font-display font-semibold text-[15px] sm:text-base tracking-[-0.02em] truncate">
+                        Ikshvaku<span className="text-ink/45 font-normal"> Solutions</span>
+                    </span>
                 </Link>
 
-                {/* Desktop Nav */}
-                <div className="hidden lg:flex items-center gap-8">
-                    {navLinks.map((link, index) => (
-                        <Link
-                            key={index}
-                            to={link.href}
-                            className={`relative text-sm font-medium transition-colors group ${location.pathname === link.href
-                                    ? 'text-mint'
-                                    : isScrolled || !isHomePage
-                                        ? 'text-dark hover:text-mint-deep'
-                                        : 'text-white/90 hover:text-mint'
-                                }`}
-                        >
-                            {link.name}
-                            <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-mint transition-all duration-300 ${location.pathname === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                                }`}></span>
-                        </Link>
-                    ))}
-                    <Link to="/contact" className="btn-primary text-sm">
-                        Get Started
-                    </Link>
+                {/* Desktop nav */}
+                <div className="hidden lg:flex gap-[26px] text-[13.5px] font-medium">
+                    {navLinks.map((link) => {
+                        const isActive = location.pathname === link.href
+                        return (
+                            <Link
+                                key={link.href}
+                                to={link.href}
+                                className={`relative py-1 transition-colors duration-300 ${isActive ? 'text-ink' : 'text-ink/70 hover:text-marine'
+                                    }`}
+                            >
+                                {link.name}
+                                <span
+                                    className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-marine transition-all duration-500 ${isActive ? 'w-full' : 'w-0'
+                                        }`}
+                                ></span>
+                            </Link>
+                        )
+                    })}
                 </div>
 
-                {/* Mobile Menu Button */}
-                <button
-                    className="lg:hidden flex flex-col gap-1.5 p-2 z-50"
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                >
-                    <span className={`w-6 h-0.5 transition-all duration-300 ${isMobileMenuOpen
-                            ? 'bg-dark rotate-45 translate-y-2'
-                            : isScrolled || !isHomePage ? 'bg-dark' : 'bg-white'
-                        }`}></span>
-                    <span className={`w-6 h-0.5 transition-all duration-300 ${isMobileMenuOpen
-                            ? 'opacity-0'
-                            : isScrolled || !isHomePage ? 'bg-dark' : 'bg-white'
-                        }`}></span>
-                    <span className={`w-6 h-0.5 transition-all duration-300 ${isMobileMenuOpen
-                            ? 'bg-dark -rotate-45 -translate-y-2'
-                            : isScrolled || !isHomePage ? 'bg-dark' : 'bg-white'
-                        }`}></span>
-                </button>
+                <Link to="/contact" className="hidden lg:inline-flex btn-ink btn-sm">
+                    Talk to an Expert
+                    <span className="leading-none">→</span>
+                </Link>
 
-                {/* Mobile Menu */}
-                <div className={`lg:hidden fixed top-0 right-0 w-4/5 max-w-sm h-screen bg-white/98 backdrop-blur-xl 
-          flex flex-col justify-center items-center gap-8 transition-transform duration-300 shadow-2xl
-          ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                    {navLinks.map((link, index) => (
-                        <Link
-                            key={index}
-                            to={link.href}
-                            className={`text-lg font-medium transition-colors ${location.pathname === link.href ? 'text-mint-deep' : 'text-dark hover:text-mint-deep'
-                                }`}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                    <Link to="/contact" className="btn-primary" onClick={() => setIsMobileMenuOpen(false)}>
-                        Get Started
+                {/* Mobile toggle */}
+                <button
+                    className="lg:hidden flex flex-col gap-[5px] p-2 z-[160] ml-auto"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={isMobileMenuOpen}
+                >
+                    <span className={`w-[22px] h-[1.5px] bg-ink transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`}></span>
+                    <span className={`w-[22px] h-[1.5px] bg-ink transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`w-[22px] h-[1.5px] bg-ink transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`}></span>
+                </button>
+            </nav>
+
+            {/* Mobile sheet */}
+            <div
+                className={`lg:hidden fixed inset-0 z-[150] transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                    }`}
+                style={{
+                    background: 'rgba(242,240,235,.92)',
+                    backdropFilter: 'blur(24px) saturate(150%)',
+                    WebkitBackdropFilter: 'blur(24px) saturate(150%)',
+                }}
+            >
+                <div className="h-full overflow-y-auto overscroll-contain flex flex-col justify-center w-full max-w-[520px] mx-auto px-6 py-24">
+                    <div className="eyebrow eyebrow-rule mb-6 sm:mb-8">Menu</div>
+                    <div className="rule-list">
+                        {navLinks.map((link, i) => {
+                            const isActive = location.pathname === link.href
+                            return (
+                                <Link
+                                    key={link.href}
+                                    to={link.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="flex items-baseline justify-between py-4 sm:py-5 border-b"
+                                    style={{ borderColor: 'var(--rule)' }}
+                                >
+                                    <span className={`font-display text-[24px] sm:text-[28px] font-semibold tracking-[-0.03em] ${isActive ? 'text-marine' : ''}`}>
+                                        {link.name}
+                                    </span>
+                                    <span className="text-[10.5px] font-semibold tracking-[0.14em] text-ink/35">
+                                        {String(i + 1).padStart(2, '0')}
+                                    </span>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                    <Link
+                        to="/contact"
+                        className="btn-ink mt-7 sm:mt-9 justify-center"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        Talk to an Expert
+                        <span className="leading-none">→</span>
                     </Link>
+                    <p className="mt-5 font-script text-[19px] text-clay/95">
+                        we respond within 24 hours
+                    </p>
                 </div>
             </div>
-        </nav>
+        </header>
     )
 }
 

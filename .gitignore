@@ -27,9 +27,10 @@ yarn-debug.log*
 yarn-error.log*
 *.log
 
-# Editor directories
+# Editor / tooling directories
 .vscode/
 .idea/
+.claude/
 
 # OS files
 .DS_Store

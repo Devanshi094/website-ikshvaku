@@ -2,27 +2,36 @@ import Hero from '../components/Hero'
 import AICapabilities from '../components/AICapabilities'
 import WhatWeDo from '../components/WhatWeDo'
 import HowAIWorks from '../components/HowAIWorks'
-import AIChatDemo from '../components/AIChatDemo'
 import Strategy from '../components/Strategy'
 import Impact from '../components/Impact'
+import SectionRail from '../components/SectionRail'
+
+const stops = [
+    { id: 'home', label: 'Intro' },
+    { id: 'capabilities', label: 'AI Capabilities' },
+    { id: 'whatwedo', label: 'What We Do' },
+    { id: 'method', label: 'The AI Process' },
+    { id: 'strategy', label: 'AI Strategy' },
+    { id: 'impact', label: 'AI Impact' },
+]
 
 const HomePage = () => {
     return (
         <>
-            {/* AI-First Hero with Typing Effect & Neural Network Background */}
+            {/* Fixed section navigator */}
+            <SectionRail stops={stops} />
+
+            {/* AI-First Hero with Typing Effect & Demo Film */}
             <Hero />
 
-            {/* AI Capabilities - Interactive Cards */}
+            {/* AI Capabilities */}
             <AICapabilities />
 
-            {/* What We Do - Enhanced with AI Focus */}
+            {/* What We Do */}
             <WhatWeDo />
 
-            {/* How Our AI Works - Animated Flow Visualization */}
+            {/* How Our AI Works */}
             <HowAIWorks />
-
-            {/* AI Chat Demo - Interactive Frontend Simulation */}
-            <AIChatDemo />
 
             {/* Strategy Section */}
             <Strategy />
