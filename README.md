@@ -17,6 +17,33 @@ npm run dev
 Other scripts: `npm run build` (production bundle to `dist/`), `npm run preview`
 (serve the built bundle), `npm run lint`.
 
+## Deploying
+
+```bash
+npm run build
+```
+
+Upload the **contents** of `dist/` to the web root — the files themselves, not
+the `dist` folder. On cPanel that is usually `public_html/`.
+
+All six routes are client-side, so the server must fall back to `index.html` for
+any path that is not a real file. Otherwise loading or refreshing
+`/services`, `/projects`, `/about`, `/careers` or `/contact` returns a 404.
+The build already ships the config for this:
+
+- **Apache / cPanel** — `dist/.htaccess` (also sets caching and compression).
+  Make sure hidden files are included when you upload, and that the host allows
+  `.htaccess` overrides.
+- **Netlify** — `dist/_redirects`
+- **Vercel** — `vercel.json` in the project root
+- **Nginx** — not covered by the build; add to your server block:
+
+  ```nginx
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+  ```
+
 ## Design system
 
 The UI follows a paper-and-ink editorial system. Everything is defined once in
@@ -68,10 +95,19 @@ src/
 
 Routes: `/`, `/services`, `/projects`, `/about`, `/careers`, `/contact`.
 
-## Note on the contact form
+## Contact form — read before launch
 
-`src/pages/ContactPage.jsx` posts to `http://localhost:8000/api/contact`. That
-backend is not part of this repository, and the submit handler falls back to a
-success message when the request fails — so the form appears to work in
-production without actually delivering anything. Point `API_URL` at a real
-endpoint before relying on it.
+`src/pages/ContactPage.jsx` posts to `${VITE_API_URL}/api/contact`, defaulting to
+`http://localhost:8000` when the variable is unset. That backend is **not** part
+of this repository.
+
+Point it at a real endpoint by creating `.env.production` before building:
+
+```
+VITE_API_URL=https://api.your-domain.com
+```
+
+Until you do, the submit handler's `catch` shows *"Thank you for your message!"*
+even though the request failed — visitors will believe they have contacted you
+and no enquiry will arrive. Either wire up the backend, or change that `catch`
+to surface a real error and point people at WhatsApp instead.

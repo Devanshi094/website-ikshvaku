@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { CONTACT } from '../config/contact'
 
-const API_URL = 'http://localhost:8000'
+// Set VITE_API_URL at build time to point the form at a real backend.
+// Without it the request fails and the catch below takes over — see README.
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
