@@ -1,5 +1,8 @@
-import { Link } from 'react-router-dom'
 import { useReveal, reveal } from '../hooks/useReveal'
+import { CONTACT } from '../config/contact'
+
+// Applications go to HR, not sales.
+const RESUME_MAILTO = `${CONTACT.hrEmailHref}?subject=${encodeURIComponent('Application — Ikshvaku Solutions')}`
 
 const CareersPage = () => {
     const [benefitsRef, benefitsIn] = useReveal(0.1)
@@ -85,9 +88,9 @@ const CareersPage = () => {
                                     View Open Positions
                                     <span className="leading-none">→</span>
                                 </a>
-                                <Link to="/contact" className="btn-glass">
+                                <a href={RESUME_MAILTO} className="btn-glass">
                                     Send Your Resume
-                                </Link>
+                                </a>
                             </div>
                         </div>
 
@@ -198,10 +201,13 @@ const CareersPage = () => {
                                         <span className="stat-figure text-[26px] text-marine">
                                             {String(index + 1).padStart(2, '0')}
                                         </span>
-                                        <Link to="/contact" className="btn-ink btn-sm whitespace-nowrap">
+                                        <a
+                                            href={`${CONTACT.hrEmailHref}?subject=${encodeURIComponent(`Application — ${job.title}`)}`}
+                                            className="btn-ink btn-sm whitespace-nowrap"
+                                        >
                                             Apply Now
                                             <span className="leading-none">→</span>
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -223,10 +229,10 @@ const CareersPage = () => {
                                 reach out when a suitable position opens up.
                             </p>
                         </div>
-                        <Link to="/contact" className="btn-ink">
+                        <a href={RESUME_MAILTO} className="btn-ink">
                             Send Your Resume
                             <span className="leading-none">→</span>
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </section>

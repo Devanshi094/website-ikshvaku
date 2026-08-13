@@ -95,19 +95,31 @@ src/
 
 Routes: `/`, `/services`, `/projects`, `/about`, `/careers`, `/contact`.
 
-## Contact form — read before launch
+## Contact form
 
-`src/pages/ContactPage.jsx` posts to `${VITE_API_URL}/api/contact`, defaulting to
-`http://localhost:8000` when the variable is unset. That backend is **not** part
-of this repository.
+The site is static, so there is no server to accept a POST. Submitting the form
+opens the visitor's own mail app with the enquiry pre-filled and addressed to
+**sales@ikshvakusolutions.com**; they press send from there.
 
-Point it at a real endpoint by creating `.env.production` before building:
+Consequences worth knowing:
 
-```
-VITE_API_URL=https://api.your-domain.com
-```
+- Nothing is delivered until the visitor sends the message themselves. Someone
+  who abandons the compose window never reaches you.
+- It fails quietly for anyone without a configured mail client — common on
+  desktops, rare on phones. The confirmation panel that appears after
+  submitting names the address and offers WhatsApp as a fallback, and the form
+  is deliberately not cleared so the text can still be copied.
+- Nothing is logged, so there is no record of attempted enquiries.
 
-Until you do, the submit handler's `catch` shows *"Thank you for your message!"*
-even though the request failed — visitors will believe they have contacted you
-and no enquiry will arrive. Either wire up the backend, or change that `catch`
-to surface a real error and point people at WhatsApp instead.
+To capture enquiries reliably instead, point the form at a backend or a form
+relay and replace `handleSubmit` in `src/pages/ContactPage.jsx`.
+
+## Email routing
+
+| Purpose | Address | Where |
+| --- | --- | --- |
+| Enquiries | `sales@ikshvakusolutions.com` | Contact page, footer, every Email button |
+| Applications | `hr@ikshvakusolutions.com` | Careers page — "Send Your Resume" and each "Apply Now" |
+
+Both are defined in [`src/config/contact.js`](src/config/contact.js). "Apply Now"
+sets the subject to the role applied for.

@@ -1,9 +1,5 @@
 import { useState } from 'react'
-import { CONTACT } from '../config/contact'
-
-// Set VITE_API_URL at build time to point the form at a real backend.
-// Without it the request fails and the catch below takes over — see README.
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+import { CONTACT, buildEnquiryMailto } from '../config/contact'
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -12,41 +8,21 @@ const ContactPage = () => {
         company: '',
         message: ''
     })
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [submitStatus, setSubmitStatus] = useState(null)
+    const [handedOff, setHandedOff] = useState(false)
 
-    const handleSubmit = async (e) => {
+    // The site is static — there is no server to POST to. Submitting opens the
+    // visitor's own mail app with the enquiry filled in, addressed to sales@.
+    // The form is deliberately NOT cleared: if no mail app opens, the visitor
+    // still has their text to copy.
+    const handleSubmit = (e) => {
         e.preventDefault()
-        setIsSubmitting(true)
-        setSubmitStatus(null)
-
-        try {
-            const response = await fetch(`${API_URL}/api/contact`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            })
-
-            const data = await response.json()
-
-            if (response.ok) {
-                setSubmitStatus({ type: 'success', message: data.message })
-                setFormData({ name: '', email: '', company: '', message: '' })
-            } else {
-                setSubmitStatus({ type: 'error', message: 'Something went wrong. Please try again.' })
-            }
-        } catch {
-            setSubmitStatus({ type: 'success', message: 'Thank you for your message! We will get back to you soon.' })
-            setFormData({ name: '', email: '', company: '', message: '' })
-        } finally {
-            setIsSubmitting(false)
-        }
+        window.location.href = buildEnquiryMailto(formData)
+        setHandedOff(true)
     }
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
+        setHandedOff(false)
     }
 
     const contactInfo = [
@@ -213,16 +189,29 @@ const ContactPage = () => {
                                 <span className="section-index">We'll get back within 24 hours</span>
                             </div>
 
-                            {submitStatus && (
+                            {handedOff && (
                                 <div
-                                    className="mt-6 px-5 py-4 rounded-[10px] text-[14px] border"
-                                    style={
-                                        submitStatus.type === 'success'
-                                            ? { borderColor: 'rgba(47,75,143,.3)', background: 'rgba(47,75,143,.07)', color: 'var(--blue)' }
-                                            : { borderColor: 'rgba(180,103,74,.35)', background: 'rgba(180,103,74,.07)', color: 'var(--clay)' }
-                                    }
+                                    className="mt-6 px-5 py-4 rounded-[10px] text-[14px] leading-[1.6] border"
+                                    style={{ borderColor: 'rgba(47,75,143,.3)', background: 'rgba(47,75,143,.07)', color: 'var(--blue)' }}
+                                    role="status"
                                 >
-                                    {submitStatus.message}
+                                    Your email app should have opened with the message ready —
+                                    press send there to deliver it.
+                                    <br />
+                                    If nothing opened, email{' '}
+                                    <a href={CONTACT.emailHref} className="underline font-semibold">
+                                        {CONTACT.email}
+                                    </a>{' '}
+                                    directly, or{' '}
+                                    <a
+                                        href={CONTACT.whatsappHref}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="underline font-semibold"
+                                    >
+                                        message us on WhatsApp
+                                    </a>
+                                    . Your text is still in the form below.
                                 </div>
                             )}
 
@@ -285,15 +274,11 @@ const ContactPage = () => {
 
                                 <div className="flex flex-wrap items-center justify-between gap-5 pt-2">
                                     <span className="text-[12.5px] leading-[1.6] text-ink/50 max-w-[38ch]">
-                                        By submitting, you agree to our privacy policy.
+                                        Opens in your email app, addressed to {CONTACT.email}.
                                         We never share your data.
                                     </span>
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className="btn-ink disabled:opacity-50 disabled:cursor-not-allowed"
-                                    >
-                                        {isSubmitting ? 'Sending…' : 'Send Message'}
+                                    <button type="submit" className="btn-ink">
+                                        Send Message
                                         <span className="leading-none">→</span>
                                     </button>
                                 </div>
