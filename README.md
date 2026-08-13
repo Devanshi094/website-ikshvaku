@@ -28,7 +28,7 @@ the `dist` folder. On cPanel that is usually `public_html/`.
 
 All six routes are client-side, so the server must fall back to `index.html` for
 any path that is not a real file. Otherwise loading or refreshing
-`/services`, `/projects`, `/about`, `/careers` or `/contact` returns a 404.
+`/services`, `/projects`, `/about` or `/contact` returns a 404.
 The build already ships the config for this:
 
 - **Apache / cPanel** — `dist/.htaccess` (also sets caching and compression).
@@ -93,7 +93,8 @@ src/
   index.css     Theme tokens, base layer, component layer
 ```
 
-Routes: `/`, `/services`, `/projects`, `/about`, `/careers`, `/contact`.
+Routes: `/`, `/services`, `/projects`, `/about`, `/contact`. Anything else
+redirects to `/`.
 
 ## Contact form
 
@@ -116,10 +117,9 @@ relay and replace `handleSubmit` in `src/pages/ContactPage.jsx`.
 
 ## Email routing
 
-| Purpose | Address | Where |
-| --- | --- | --- |
-| Enquiries | `sales@ikshvakusolutions.com` | Contact page, footer, every Email button |
-| Applications | `hr@ikshvakusolutions.com` | Careers page — "Send Your Resume" and each "Apply Now" |
+Everything routes to **sales@ikshvakusolutions.com** — the contact form, the
+footer, and every Email affordance. It is defined once in
+[`src/config/contact.js`](src/config/contact.js).
 
-Both are defined in [`src/config/contact.js`](src/config/contact.js). "Apply Now"
-sets the subject to the role applied for.
+There is no careers page, so `hr@ikshvakusolutions.com` is not referenced
+anywhere on the site.

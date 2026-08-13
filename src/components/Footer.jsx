@@ -20,7 +20,6 @@ const Footer = () => {
             { name: 'About Us', href: '/about' },
             { name: 'Services', href: '/services' },
             { name: 'Projects', href: '/projects' },
-            { name: 'Careers', href: '/careers' },
             { name: 'Contact', href: '/contact' },
         ],
         aiServices: [
@@ -32,7 +31,6 @@ const Footer = () => {
         resources: [
             { name: 'AI Case Studies', href: '/projects' },
             { name: 'Our Strategy', href: '/about' },
-            { name: 'Careers', href: '/careers' },
             { name: 'Contact Us', href: '/contact' },
         ]
     }

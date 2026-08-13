@@ -7,16 +7,11 @@
 const PHONE_E164 = '919307116283'
 
 const SALES_EMAIL = 'sales@ikshvakusolutions.com'
-const HR_EMAIL = 'hr@ikshvakusolutions.com'
 
 export const CONTACT = {
     // Enquiries — the contact form and every "email us" affordance
     email: SALES_EMAIL,
     emailHref: `mailto:${SALES_EMAIL}`,
-
-    // Applications — the careers page only
-    hrEmail: HR_EMAIL,
-    hrEmailHref: `mailto:${HR_EMAIL}`,
 
     // Display form, spaced for readability
     phone: '+91 93071 16283',
