@@ -1,43 +1,34 @@
 import Hero from '../components/Hero'
-import AICapabilities from '../components/AICapabilities'
-import WhatWeDo from '../components/WhatWeDo'
-import HowAIWorks from '../components/HowAIWorks'
-import Strategy from '../components/Strategy'
-import Impact from '../components/Impact'
+import Practice from '../components/Practice'
+import Capabilities from '../components/Capabilities'
+import Work from '../components/Work'
+import Lifecycle from '../components/Lifecycle'
+import Engagement from '../components/Engagement'
+import Industries from '../components/Industries'
 import SectionRail from '../components/SectionRail'
 
 const stops = [
-    { id: 'home', label: 'Intro' },
-    { id: 'capabilities', label: 'AI Capabilities' },
-    { id: 'whatwedo', label: 'What We Do' },
-    { id: 'method', label: 'The AI Process' },
-    { id: 'strategy', label: 'AI Strategy' },
-    { id: 'impact', label: 'AI Impact' },
+    { id: 'home', label: 'Opening' },
+    { id: 'practice', label: 'The Practice' },
+    { id: 'capabilities', label: 'Capability' },
+    { id: 'work', label: 'Selected Work' },
+    { id: 'lifecycle', label: 'Lifecycle' },
+    { id: 'engagement', label: 'Engagement' },
+    { id: 'industries', label: 'Industries' },
 ]
 
 const HomePage = () => {
     return (
         <>
-            {/* Fixed section navigator */}
             <SectionRail stops={stops} />
 
-            {/* AI-First Hero with Typing Effect & Demo Film */}
             <Hero />
-
-            {/* AI Capabilities */}
-            <AICapabilities />
-
-            {/* What We Do */}
-            <WhatWeDo />
-
-            {/* How Our AI Works */}
-            <HowAIWorks />
-
-            {/* Strategy Section */}
-            <Strategy />
-
-            {/* Impact & Stats */}
-            <Impact />
+            <Practice />
+            <Capabilities />
+            <Work />
+            <Lifecycle />
+            <Engagement />
+            <Industries />
         </>
     )
 }

@@ -11,11 +11,11 @@ import ContactPage from './pages/ContactPage'
 
 // Per-route document titles, matching ikshvakusolutions.com
 const PAGE_TITLES = {
-  '/': 'AI-Powered Digital Transformation & IT Services | Ikshvaku Solutions',
-  '/services': 'IT Services & Resource Augmentation | Ikshvaku Solutions',
-  '/projects': 'Our Projects — Real Solutions, Real Impact | Ikshvaku Solutions',
-  '/about': 'About Us — We Champion the Bold | Ikshvaku Solutions',
-  '/contact': "Contact Us — Let's Connect | Ikshvaku Solutions",
+  '/': 'Ikshvaku Solutions — Enterprise AI & Software Engineering',
+  '/services': 'Capability — Six Lines of Work | Ikshvaku Solutions',
+  '/projects': 'Selected Work — Fifty Projects, Nine Industries | Ikshvaku Solutions',
+  '/about': 'The Practice — We Architect Systems | Ikshvaku Solutions',
+  '/contact': "Contact — Let's Build Together | Ikshvaku Solutions",
 }
 
 // Scroll to top component
@@ -64,7 +64,7 @@ function App() {
             Ikshvaku<span className="text-ink/45 font-normal"> Solutions</span>
           </p>
           <p className="mt-3 text-[10.5px] font-semibold tracking-[0.16em] uppercase text-ink/40">
-            We champion the bold
+            Enterprise AI · Software Engineering
           </p>
         </div>
       </div>

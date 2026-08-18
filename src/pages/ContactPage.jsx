@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { CONTACT, buildEnquiryMailto } from '../config/contact'
+import { WHAT_TO_SEND, CONTACT_INVITATION } from '../content/company'
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -57,15 +58,17 @@ const ContactPage = () => {
             {/* Page opening */}
             <section className="relative pt-[112px] pb-10 sm:pt-[150px] sm:pb-14 lg:pt-[190px] lg:pb-20">
                 <div className="shell">
-                    <div className="eyebrow eyebrow-rule animate-fade-up">Get in touch</div>
+                    <div className="flex items-baseline justify-between gap-6 animate-fade-up">
+                        <div className="eyebrow eyebrow-rule">Contact</div>
+                        <span className="plate-mark hidden sm:block">09</span>
+                    </div>
                     <div className="grid lg:grid-cols-[1.2fr_.8fr] gap-10 lg:gap-[60px] items-end mt-[26px]">
                         <div>
-                            <h1 className="display-xl max-w-[12ch] animate-fade-up stagger-1">
-                                Let's Connect
+                            <h1 className="display-xl max-w-[11ch] animate-fade-up stagger-1">
+                                Let's build together.
                             </h1>
-                            <p className="lede mt-7 max-w-[48ch] animate-fade-up stagger-2">
-                                Have a project in mind? We'd love to hear from you. Send us a message
-                                and we'll respond within 24 hours.
+                            <p className="lede mt-7 max-w-[46ch] animate-fade-up stagger-2">
+                                {CONTACT_INVITATION}
                             </p>
                             <div className="flex flex-wrap gap-3 mt-9 animate-fade-up stagger-3">
                                 <a
@@ -98,7 +101,7 @@ const ContactPage = () => {
                                 </span>
                             </div>
                             <div className="flex items-center gap-2 mt-4 font-script text-[18px] text-clay/90">
-                                <span className="block animate-bob">↓</span> we respond fast
+                                <span className="block animate-bob">↓</span> a senior architect reads it
                             </div>
                         </div>
                     </div>
@@ -110,17 +113,35 @@ const ContactPage = () => {
                 <div className="shell">
                     <div className="section-head">
                         <h2 className="display-md max-w-[20ch]">
-                            Contact Information
+                            What to send us
                         </h2>
-                        <span className="section-index">01 — Get In Touch</span>
+                        <span className="section-index">01 — First conversation</span>
                     </div>
 
                     <div className="grid lg:grid-cols-[.85fr_1.15fr] gap-10 lg:gap-14 mt-9 items-start">
                         {/* Contact info */}
                         <div>
-                            <p className="lede max-w-[42ch]">
-                                Fill the form or reach us directly — we respond fast.
-                            </p>
+                            <div className="schedule">
+                                {WHAT_TO_SEND.map((item) => (
+                                    <div
+                                        key={item.num}
+                                        className="py-5 border-b"
+                                        style={{ borderColor: 'var(--rule)' }}
+                                    >
+                                        <div className="flex items-baseline gap-4">
+                                            <span className="grid-ref">{item.num}</span>
+                                            <div>
+                                                <h3 className="font-display text-[17px] font-semibold tracking-[-0.02em]">
+                                                    {item.title}
+                                                </h3>
+                                                <p className="text-[14px] leading-[1.6] text-ink/62 mt-2">
+                                                    {item.body}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
 
                             <div className="flex flex-col gap-[18px] mt-8">
                                 {contactInfo.map((info) => {

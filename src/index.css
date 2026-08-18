@@ -330,6 +330,47 @@
     font-family: var(--font-display);
     font-weight: 600;
     letter-spacing: -.035em;
+    /* Figures line up in a column instead of jittering between rows */
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The A.01 / P.01 / D.01 reference marks the portfolio is organised around.
+     Every capability, system and engagement mode is located on this grid. */
+  .grid-ref {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    font-variant-numeric: tabular-nums;
+    color: var(--clay);
+  }
+
+  .grid-ref-quiet {
+    color: var(--ink-35);
+  }
+
+  /* Sits in the top-right of a plate, like a drawing number */
+  .plate-mark {
+    font-family: var(--font-display);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-35);
+  }
+
+  /* Hairline column of items — the schedule pattern used throughout */
+  .schedule {
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .schedule-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
   }
 
   .lede {
@@ -533,6 +574,7 @@
     font-size: 26px;
     font-weight: 600;
     letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
   }
 
   /* The small blue block used as a bullet / logo mark */
