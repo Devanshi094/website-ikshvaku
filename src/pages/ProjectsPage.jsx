@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useReveal, reveal } from '../hooks/useReveal'
 import { PROJECTS, CAPABILITIES, METRICS } from '../content/company'
+import PageNote from '../components/PageNote'
 
 // Grid line → capability title, so each system can name the column it sits on
 const GRID_TITLES = Object.fromEntries(CAPABILITIES.map((c) => [c.ref, c.title]))
@@ -50,6 +51,7 @@ const ProjectsPage = () => {
                                     <span className="rule-value">{stat.value}</span>
                                 </div>
                             ))}
+                            <PageNote page="projects" className="mt-4" />
                         </div>
                     </div>
                 </div>

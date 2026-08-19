@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CONTACT, buildEnquiryMailto } from '../config/contact'
 import { WHAT_TO_SEND, CONTACT_INVITATION } from '../content/company'
+import PageNote from '../components/PageNote'
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -25,33 +26,6 @@ const ContactPage = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
         setHandedOff(false)
     }
-
-    const contactInfo = [
-        {
-            num: '01',
-            title: 'Office Address',
-            content: CONTACT.addressLines
-        },
-        {
-            num: '02',
-            title: 'Email Us',
-            content: [CONTACT.email],
-            href: CONTACT.emailHref
-        },
-        {
-            num: '03',
-            title: 'Call Us',
-            content: [CONTACT.phone],
-            href: CONTACT.phoneHref
-        },
-        {
-            num: '04',
-            title: 'WhatsApp',
-            content: [CONTACT.whatsapp, 'Message us any time'],
-            href: CONTACT.whatsappHref,
-            external: true
-        }
-    ]
 
     return (
         <div>
@@ -100,9 +74,7 @@ const ContactPage = () => {
                                     {CONTACT.hours}
                                 </span>
                             </div>
-                            <div className="flex items-center gap-2 mt-4 font-script text-[18px] text-clay/90">
-                                <span className="block animate-bob">↓</span> a senior architect reads it
-                            </div>
+                            <PageNote page="contact" className="mt-4" />
                         </div>
                     </div>
                 </div>
@@ -143,61 +115,6 @@ const ContactPage = () => {
                                 ))}
                             </div>
 
-                            <div className="flex flex-col gap-[18px] mt-8">
-                                {contactInfo.map((info) => {
-                                    const body = (
-                                        <>
-                                            <div className="flex items-center justify-between">
-                                                <span className="mark-bar transition-transform duration-500 group-hover:scale-y-125"></span>
-                                                <span className="text-[11px] font-semibold tracking-[0.1em] text-ink/35">
-                                                    {info.num}
-                                                </span>
-                                            </div>
-                                            <h3 className="text-[10.5px] font-semibold tracking-[0.14em] uppercase text-ink/45 mt-4">
-                                                {info.title}
-                                            </h3>
-                                            <div className="mt-2.5">
-                                                {info.content.map((line) => (
-                                                    <p key={line} className="text-[14.5px] leading-[1.6] text-ink/75">
-                                                        {line}
-                                                    </p>
-                                                ))}
-                                            </div>
-                                        </>
-                                    )
-
-                                    const cls = 'glass-quiet glass-hover group p-5 sm:p-6'
-
-                                    return info.href ? (
-                                        <a
-                                            key={info.num}
-                                            href={info.href}
-                                            className={`${cls} block`}
-                                            {...(info.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                                        >
-                                            {body}
-                                        </a>
-                                    ) : (
-                                        <div key={info.num} className={cls}>{body}</div>
-                                    )
-                                })}
-                            </div>
-
-                            {/* Location */}
-                            <div className="glass-quiet mt-[18px] p-6 relative overflow-hidden">
-                                <div className="absolute inset-0 grid-texture opacity-70 pointer-events-none"></div>
-                                <div className="relative flex items-center justify-between gap-4">
-                                    <div>
-                                        <div className="text-[10.5px] font-semibold tracking-[0.14em] uppercase text-ink/45">
-                                            Location
-                                        </div>
-                                        <div className="font-display text-[17px] font-semibold tracking-[-0.02em] mt-2">
-                                            {CONTACT.location}
-                                        </div>
-                                    </div>
-                                    <span className="block w-[11px] h-9 bg-clay flex-shrink-0"></span>
-                                </div>
-                            </div>
                         </div>
 
                         {/* Form */}

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import heroVideo from '../assets/AI_for_Business_A_Demo.mp4'
 import { PROFILE, METRICS, CERTIFICATIONS } from '../content/company'
+import PageNote from './PageNote'
 
 const Hero = () => {
     return (
@@ -78,6 +79,8 @@ const Hero = () => {
                                 </div>
                             ))}
                         </div>
+
+                        <PageNote page="home" className="mt-4" />
                     </div>
                 </div>
             </div>

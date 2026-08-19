@@ -630,3 +630,16 @@ export const WHAT_TO_SEND = [
 
 export const CONTACT_INVITATION =
     'Send the problem, not the specification. We will come back with an architecture.'
+
+/**
+ * The handwritten margin note in each page's opening, set in Caveat.
+ * One per page and all different — it reads as an aside from the architect,
+ * so repeating the same line would give the game away.
+ */
+export const PAGE_NOTES = {
+    home: 'no handoffs — the architect stays',
+    services: 'everything we build sits on one of these',
+    projects: 'all of it still running in production',
+    about: 'founded 2019, still hands-on',
+    contact: 'a senior architect reads it',
+}

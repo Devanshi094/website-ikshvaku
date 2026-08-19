@@ -8,6 +8,7 @@ import {
     TECH_LAYERS,
     TECH_PRINCIPLE,
 } from '../content/company'
+import PageNote from '../components/PageNote'
 
 const ServicesPage = () => {
     const [capRef, capIn] = useReveal(0.04)
@@ -51,6 +52,7 @@ const ServicesPage = () => {
                                     <span className="grid-ref">{capability.ref}</span>
                                 </div>
                             ))}
+                            <PageNote page="services" className="mt-4" />
                         </div>
                     </div>
                 </div>

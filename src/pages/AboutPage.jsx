@@ -9,6 +9,7 @@ import {
     INDUSTRIES,
     INDUSTRY_NOTE,
 } from '../content/company'
+import PageNote from '../components/PageNote'
 
 const AboutPage = () => {
     const [numbersRef, numbersIn] = useReveal(0.06)
@@ -27,11 +28,13 @@ const AboutPage = () => {
 
                     <div className="grid lg:grid-cols-[1.2fr_.8fr] gap-10 lg:gap-[60px] items-end mt-[26px]">
                         <div>
-                            <h1 className="display-xl max-w-[13ch] animate-fade-up stagger-1">
-                                {PROFILE.statement}
+                            <h1 className="display-xl max-w-[15ch] animate-fade-up stagger-1">
+                                Called when it is too risky, too manual, or too big.
                             </h1>
                             <p className="lede mt-7 max-w-[50ch] animate-fade-up stagger-2">
-                                {PROFILE.lede}
+                                An engineering team founded in {PROFILE.founded}, headquartered in India and
+                                working with clients across India and abroad. No junior teams learning on
+                                your budget, and no project handed off after the demo.
                             </p>
                             <div className="flex flex-wrap gap-3 mt-9 animate-fade-up stagger-3">
                                 <Link to="/projects" className="btn-ink">
@@ -69,6 +72,7 @@ const AboutPage = () => {
                                     </span>
                                 ))}
                             </div>
+                            <PageNote page="about" className="mt-5" />
                         </div>
                     </div>
                 </div>
