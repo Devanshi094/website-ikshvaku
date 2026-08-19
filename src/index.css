@@ -785,6 +785,107 @@
     animation-delay: .4s;
   }
 
+  /* ---- Floating WhatsApp button ----
+     Stacking order on this site: page 1 · rail 130 · navbar 140 · mobile
+     sheet 150 · burger 160. The button takes 120 so it clears page content
+     but never covers navigation. */
+
+  .wa-fab {
+    position: fixed;
+    z-index: 120;
+    right: clamp(16px, 3.2vw, 28px);
+    /* Clears the iOS home indicator on phones that have one */
+    bottom: calc(clamp(16px, 3.2vw, 28px) + env(safe-area-inset-bottom, 0px));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+
+    box-shadow:
+      0 4px 12px -2px rgba(25, 26, 31, .28),
+      0 12px 28px -8px rgba(37, 211, 102, .5);
+    transition:
+      transform .35s cubic-bezier(.16, 1, .3, 1),
+      box-shadow .35s cubic-bezier(.16, 1, .3, 1);
+  }
+
+  .wa-fab:hover {
+    color: #fff;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow:
+      0 6px 16px -2px rgba(25, 26, 31, .32),
+      0 18px 38px -10px rgba(37, 211, 102, .62);
+  }
+
+  .wa-fab:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  .wa-fab-glyph {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Label reveal. Hidden from layout until hover so it cannot widen the
+     button's hit area or catch a stray tap. */
+  .wa-fab-tip {
+    position: absolute;
+    right: calc(100% + 12px);
+    white-space: nowrap;
+    padding: 8px 13px;
+    border-radius: 9px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    box-shadow: 0 10px 26px -14px rgba(25, 26, 31, .9);
+    opacity: 0;
+    transform: translateX(6px);
+    pointer-events: none;
+    transition:
+      opacity .3s cubic-bezier(.16, 1, .3, 1),
+      transform .3s cubic-bezier(.16, 1, .3, 1);
+  }
+
+  .wa-fab:hover .wa-fab-tip,
+  .wa-fab:focus-visible .wa-fab-tip {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Touch pointers have no hover, so the tooltip would only ever flash on tap */
+  @media (pointer: coarse) {
+    .wa-fab-tip {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .wa-fab {
+      width: 50px;
+      height: 50px;
+    }
+
+    .wa-fab-glyph {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  /* The mobile menu's backdrop is translucent — without this the button
+     would show through it while the menu is open. */
+  body.menu-open .wa-fab {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   /* ---- Section rail: fixed progress navigator ---- */
 
   .rail {

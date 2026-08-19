@@ -27,10 +27,16 @@ const Navbar = () => {
         }
     }, [])
 
-    // Lock the page while the mobile sheet is open
+    // Lock the page while the mobile sheet is open. The `menu-open` flag also
+    // hides the floating WhatsApp button, which would otherwise ghost through
+    // the sheet's translucent backdrop.
     useEffect(() => {
         document.body.style.overflow = isMobileMenuOpen ? 'hidden' : ''
-        return () => { document.body.style.overflow = '' }
+        document.body.classList.toggle('menu-open', isMobileMenuOpen)
+        return () => {
+            document.body.style.overflow = ''
+            document.body.classList.remove('menu-open')
+        }
     }, [isMobileMenuOpen])
 
     const navLinks = [

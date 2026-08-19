@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import WhatsAppFab from './components/WhatsAppFab'
 import HomePage from './pages/HomePage'
 import ServicesPage from './pages/ServicesPage'
 import ProjectsPage from './pages/ProjectsPage'
@@ -95,6 +96,9 @@ function App() {
           </main>
           <Footer />
         </div>
+
+        {/* Fixed chrome — outside <main>, so it is not part of any route */}
+        <WhatsAppFab />
       </div>
     </Router>
   )
