@@ -82,12 +82,12 @@ const AboutPage = () => {
                         <span className="section-index">01 — Scale</span>
                     </div>
 
-                    <p className={`lede mt-7 max-w-[58ch] ${reveal(numbersIn)}`} style={{ transitionDelay: '80ms' }}>
+                    <p className={`lede mt-7 max-w-[58ch] ${reveal(numbersIn)}`} style={{ transitionDelay: '40ms' }}>
                         Measured at 2026. Figures are cumulative across the practice since founding.
                     </p>
 
                     <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 mt-9 ${reveal(numbersIn)}`}
-                        style={{ transitionDelay: '140ms' }}>
+                        style={{ transitionDelay: '70ms' }}>
                         {METRICS.full.map((metric) => (
                             <div
                                 key={metric.label}
@@ -100,7 +100,7 @@ const AboutPage = () => {
                         ))}
                     </div>
 
-                    <div className={`grid md:grid-cols-3 gap-8 mt-12 ${reveal(numbersIn)}`} style={{ transitionDelay: '220ms' }}>
+                    <div className={`grid md:grid-cols-3 gap-8 mt-12 ${reveal(numbersIn)}`} style={{ transitionDelay: '110ms' }}>
                         {METRICS.glance.map((item) => (
                             <div key={item.title} className="pt-4" style={{ borderTop: '2px solid rgba(25,26,31,.85)' }}>
                                 <div className="font-display text-[16px] font-semibold tracking-[-0.02em]">
@@ -127,7 +127,7 @@ const AboutPage = () => {
                                 key={stage.num}
                                 className={`pt-5 ${reveal(lifecycleIn)}`}
                                 style={{
-                                    transitionDelay: `${index * 80}ms`,
+                                    transitionDelay: `${Math.min(index * 40, 240)}ms`,
                                     borderTop: '2px solid rgba(25,26,31,.85)',
                                 }}
                             >
@@ -140,7 +140,7 @@ const AboutPage = () => {
                         ))}
                     </div>
 
-                    <div className={`grid md:grid-cols-3 gap-8 mt-12 ${reveal(lifecycleIn)}`} style={{ transitionDelay: '360ms' }}>
+                    <div className={`grid md:grid-cols-3 gap-8 mt-12 ${reveal(lifecycleIn)}`} style={{ transitionDelay: '180ms' }}>
                         {ENGAGEMENT_CONSTANTS.map((item) => (
                             <div key={item.title} className="glass-quiet p-6">
                                 <div className="font-display text-[16px] font-semibold tracking-[-0.02em]">
@@ -161,7 +161,7 @@ const AboutPage = () => {
                         <span className="section-index">03 — Industries</span>
                     </div>
 
-                    <div className={`schedule mt-9 ${reveal(sectorIn)}`} style={{ transitionDelay: '80ms' }}>
+                    <div className={`schedule mt-9 ${reveal(sectorIn)}`} style={{ transitionDelay: '40ms' }}>
                         {INDUSTRIES.map((industry) => (
                             <div
                                 key={industry.num}
@@ -178,7 +178,7 @@ const AboutPage = () => {
                     </div>
 
                     <p className={`mt-9 max-w-[64ch] text-[clamp(16px,1.5vw,19px)] leading-[1.6] text-ink/72 ${reveal(sectorIn)}`}
-                        style={{ transitionDelay: '160ms' }}>
+                        style={{ transitionDelay: '80ms' }}>
                         {INDUSTRY_NOTE}
                     </p>
                 </div>

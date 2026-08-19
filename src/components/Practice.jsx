@@ -39,7 +39,7 @@ const Practice = () => {
                     </div>
 
                     {/* Proof, then the shape of the practice */}
-                    <div className={reveal(isIn)} style={{ transitionDelay: '140ms' }}>
+                    <div className={reveal(isIn)} style={{ transitionDelay: '70ms' }}>
                         <div className="ink-panel on-dark rounded-2xl p-7 sm:p-9 relative overflow-hidden">
                             <div className="absolute inset-0 grid-texture-light opacity-70 pointer-events-none"></div>
                             <div

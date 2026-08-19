@@ -13,7 +13,7 @@ const Capabilities = () => {
                     <span className="section-index">02 — Capability</span>
                 </div>
 
-                <p className={`lede mt-7 max-w-[58ch] ${reveal(isIn)}`} style={{ transitionDelay: '80ms' }}>
+                <p className={`lede mt-7 max-w-[58ch] ${reveal(isIn)}`} style={{ transitionDelay: '40ms' }}>
                     Every system we build is located on one of these before a line of code is written.
                 </p>
 
@@ -22,7 +22,7 @@ const Capabilities = () => {
                         <div
                             key={capability.ref}
                             className={`glass-quiet glass-hover group p-[26px] flex flex-col ${reveal(isIn)}`}
-                            style={{ transitionDelay: `${index * 70}ms` }}
+                            style={{ transitionDelay: `${Math.min(index * 35, 240)}ms` }}
                         >
                             <div className="flex items-center justify-between">
                                 <span className="mark-bar transition-transform duration-500 group-hover:scale-y-125"></span>
@@ -49,7 +49,7 @@ const Capabilities = () => {
                 </div>
 
                 {/* The shared substrate every line runs on */}
-                <div className={`mt-6 ${reveal(isIn)}`} style={{ transitionDelay: '440ms' }}>
+                <div className={`mt-6 ${reveal(isIn)}`} style={{ transitionDelay: '220ms' }}>
                     <div className="schedule">
                         {[
                             { label: 'Shared delivery', value: 'Architecture / QA / Handover / Maintenance' },

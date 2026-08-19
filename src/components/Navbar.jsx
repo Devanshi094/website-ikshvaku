@@ -1,17 +1,30 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const location = useLocation()
+    const frame = useRef(0)
 
+    // Coalesced to one read per frame — scroll fires far more often than the
+    // screen refreshes, and reading scrollY in the handler forces layout.
     useEffect(() => {
-        const handleScroll = () => {
+        const measure = () => {
+            frame.current = 0
             setIsScrolled(window.scrollY > 50)
         }
-        window.addEventListener('scroll', handleScroll, { passive: true })
-        return () => window.removeEventListener('scroll', handleScroll)
+        const onScroll = () => {
+            if (frame.current) return
+            frame.current = requestAnimationFrame(measure)
+        }
+
+        measure()
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => {
+            window.removeEventListener('scroll', onScroll)
+            if (frame.current) cancelAnimationFrame(frame.current)
+        }
     }, [])
 
     // Lock the page while the mobile sheet is open

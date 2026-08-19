@@ -22,7 +22,7 @@ const Lifecycle = () => {
                     <span className="section-index">04 — Lifecycle</span>
                 </div>
 
-                <p className={`lede mt-7 max-w-[58ch] ${reveal(isIn)}`} style={{ transitionDelay: '80ms' }}>
+                <p className={`lede mt-7 max-w-[58ch] ${reveal(isIn)}`} style={{ transitionDelay: '40ms' }}>
                     Five stages, run the same way whichever commercial shape the engagement takes.
                 </p>
 
@@ -37,7 +37,7 @@ const Lifecycle = () => {
                                 aria-pressed={isActive}
                                 className={`text-left pt-5 cursor-pointer transition-all duration-500 ${reveal(isIn)}`}
                                 style={{
-                                    transitionDelay: `${index * 80}ms`,
+                                    transitionDelay: `${Math.min(index * 40, 240)}ms`,
                                     borderTop: `2px solid ${isActive ? 'var(--blue)' : 'rgba(25,26,31,.85)'}`,
                                     opacity: isActive ? 1 : 0.66,
                                 }}

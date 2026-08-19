@@ -13,7 +13,7 @@ const Engagement = () => {
                     <span className="section-index">05 — Engagement</span>
                 </div>
 
-                <p className={`lede mt-7 max-w-[58ch] ${reveal(isIn)}`} style={{ transitionDelay: '80ms' }}>
+                <p className={`lede mt-7 max-w-[58ch] ${reveal(isIn)}`} style={{ transitionDelay: '40ms' }}>
                     All three run through the same lifecycle and the same architectural discipline.
                 </p>
 
@@ -22,7 +22,7 @@ const Engagement = () => {
                         <div
                             key={mode.ref}
                             className={`glass glass-hover p-6 sm:p-8 flex flex-col ${reveal(isIn)}`}
-                            style={{ transitionDelay: `${index * 100}ms` }}
+                            style={{ transitionDelay: `${Math.min(index * 50, 240)}ms` }}
                         >
                             <div className="flex items-center justify-between">
                                 <span className="mark-bar"></span>
@@ -45,7 +45,7 @@ const Engagement = () => {
                 </div>
 
                 {/* Terms that hold across all three */}
-                <div className={`grid sm:grid-cols-3 mt-6 schedule ${reveal(isIn)}`} style={{ transitionDelay: '340ms' }}>
+                <div className={`grid sm:grid-cols-3 mt-6 schedule ${reveal(isIn)}`} style={{ transitionDelay: '170ms' }}>
                     {AUGMENTATION_TERMS.map((term) => (
                         <div
                             key={term.label}
@@ -59,7 +59,7 @@ const Engagement = () => {
                 </div>
 
                 {/* What is constant regardless of contract */}
-                <div className={`grid md:grid-cols-3 gap-8 mt-12 ${reveal(isIn)}`} style={{ transitionDelay: '400ms' }}>
+                <div className={`grid md:grid-cols-3 gap-8 mt-12 ${reveal(isIn)}`} style={{ transitionDelay: '200ms' }}>
                     {ENGAGEMENT_CONSTANTS.map((item) => (
                         <div key={item.title} className="pt-4" style={{ borderTop: '2px solid rgba(25,26,31,.85)' }}>
                             <div className="font-display text-[16px] font-semibold tracking-[-0.02em]">
@@ -71,7 +71,7 @@ const Engagement = () => {
                 </div>
 
                 <div className={`flex flex-wrap items-center justify-between gap-5 mt-10 ${reveal(isIn)}`}
-                    style={{ transitionDelay: '460ms' }}>
+                    style={{ transitionDelay: '230ms' }}>
                     <p className="m-0 max-w-[52ch] text-[15px] leading-[1.6] text-ink/65">
                         Need engineers inside your own team rather than a project? That is a line of work in itself.
                     </p>

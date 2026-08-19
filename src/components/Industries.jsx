@@ -12,11 +12,11 @@ const Industries = () => {
                     <span className="section-index">06 — Industries</span>
                 </div>
 
-                <p className={`lede mt-7 max-w-[58ch] ${reveal(isIn)}`} style={{ transitionDelay: '80ms' }}>
+                <p className={`lede mt-7 max-w-[58ch] ${reveal(isIn)}`} style={{ transitionDelay: '40ms' }}>
                     Nine sectors, each with its own tolerance for error. The architecture changes accordingly.
                 </p>
 
-                <div className={`schedule mt-9 ${reveal(isIn)}`} style={{ transitionDelay: '140ms' }}>
+                <div className={`schedule mt-9 ${reveal(isIn)}`} style={{ transitionDelay: '70ms' }}>
                     {INDUSTRIES.map((industry) => (
                         <div
                             key={industry.num}
@@ -33,7 +33,7 @@ const Industries = () => {
                 </div>
 
                 <p className={`mt-9 max-w-[64ch] text-[clamp(16px,1.5vw,19px)] leading-[1.6] text-ink/72 ${reveal(isIn)}`}
-                    style={{ transitionDelay: '220ms' }}>
+                    style={{ transitionDelay: '110ms' }}>
                     {INDUSTRY_NOTE}
                 </p>
             </div>

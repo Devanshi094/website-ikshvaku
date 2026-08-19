@@ -23,11 +23,11 @@ function ScrollToTop() {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
+    // Instant, never smooth. A smooth scroll here would animate through a
+    // page that React is swapping out underneath it — the old content flies
+    // past while the new content mounts. Smooth belongs on in-page anchors,
+    // where there is a real position to travel between.
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     document.title = PAGE_TITLES[pathname] ?? PAGE_TITLES['/']
   }, [pathname])
 

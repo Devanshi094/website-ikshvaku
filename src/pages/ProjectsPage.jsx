@@ -63,7 +63,7 @@ const ProjectsPage = () => {
                         <span className="section-index">01 — Index</span>
                     </div>
 
-                    <div className={`schedule mt-8 ${reveal(scheduleIn)}`} style={{ transitionDelay: '80ms' }}>
+                    <div className={`schedule mt-8 ${reveal(scheduleIn)}`} style={{ transitionDelay: '40ms' }}>
                         {PROJECTS.map((project) => (
                             <a
                                 key={project.ref}
@@ -90,8 +90,8 @@ const ProjectsPage = () => {
                             <div
                                 key={project.ref}
                                 id={project.ref.replace('.', '-')}
-                                className={`glass glass-hover p-6 sm:p-8 md:p-10 scroll-mt-[96px] ${reveal(plateIn)}`}
-                                style={{ transitionDelay: `${Math.min(index, 6) * 60}ms` }}
+                                className={`glass glass-hover p-6 sm:p-8 md:p-10 ${reveal(plateIn)}`}
+                                style={{ transitionDelay: `${Math.min(index * 30, 240)}ms` }}
                             >
                                 <div className="grid lg:grid-cols-[1.15fr_.85fr] gap-8 lg:gap-14">
                                     <div>

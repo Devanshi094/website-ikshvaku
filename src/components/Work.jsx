@@ -77,7 +77,7 @@ const Work = () => {
 
                 {/* Named engagements */}
                 <div className={`flex items-baseline justify-between gap-5 mt-14 pb-[18px] border-b ${reveal(isIn)}`}
-                    style={{ borderColor: 'var(--rule-strong)', transitionDelay: '160ms' }}>
+                    style={{ borderColor: 'var(--rule-strong)', transitionDelay: '80ms' }}>
                     <h3 className="font-display text-[24px] font-semibold tracking-[-0.03em]">Engaged by</h3>
                     <span className="section-index">Named with client agreement</span>
                 </div>
@@ -87,7 +87,7 @@ const Work = () => {
                         <div
                             key={client.ref}
                             className={`glass glass-hover p-6 sm:p-7 ${reveal(isIn)}`}
-                            style={{ transitionDelay: `${200 + index * 90}ms` }}
+                            style={{ transitionDelay: `${Math.min(100 + index * 45, 240)}ms` }}
                         >
                             <div className="flex items-center justify-between">
                                 <span className="grid-ref">{client.ref}</span>
@@ -104,7 +104,7 @@ const Work = () => {
                 </div>
 
                 <div className={`flex flex-wrap items-center justify-between gap-5 mt-9 ${reveal(isIn)}`}
-                    style={{ transitionDelay: '480ms' }}>
+                    style={{ transitionDelay: '240ms' }}>
                     <p className="m-0 max-w-[52ch] text-[15px] leading-[1.6] text-ink/65">
                         Fourteen systems are documented in detail, each located back to its capability line.
                     </p>

@@ -69,7 +69,7 @@ const ServicesPage = () => {
                             <div
                                 key={capability.ref}
                                 className={`glass glass-hover p-6 sm:p-8 md:p-10 ${reveal(capIn)}`}
-                                style={{ transitionDelay: `${index * 60}ms` }}
+                                style={{ transitionDelay: `${Math.min(index * 30, 240)}ms` }}
                             >
                                 <div className="grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-14">
                                     <div>
@@ -122,7 +122,7 @@ const ServicesPage = () => {
                         <span className="section-index">02 — Staff augmentation</span>
                     </div>
 
-                    <p className={`lede mt-7 max-w-[60ch] ${reveal(augIn)}`} style={{ transitionDelay: '80ms' }}>
+                    <p className={`lede mt-7 max-w-[60ch] ${reveal(augIn)}`} style={{ transitionDelay: '40ms' }}>
                         Dedicated engineers who join your own team and tools, on project-based or long-term
                         engagement — not a separate vendor working at arm's length.
                     </p>
@@ -132,7 +132,7 @@ const ServicesPage = () => {
                             <div
                                 key={role.num}
                                 className={`glass-quiet glass-hover group p-[26px] ${reveal(augIn)}`}
-                                style={{ transitionDelay: `${index * 70}ms` }}
+                                style={{ transitionDelay: `${Math.min(index * 35, 240)}ms` }}
                             >
                                 <div className="flex items-center justify-between">
                                     <span className="mark-bar transition-transform duration-500 group-hover:scale-y-125"></span>
@@ -151,7 +151,7 @@ const ServicesPage = () => {
 
                     {/* How engagement runs */}
                     <div className={`grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12 ${reveal(augIn)}`}
-                        style={{ transitionDelay: '300ms' }}>
+                        style={{ transitionDelay: '150ms' }}>
                         {AUGMENTATION_PROCESS.map((step) => (
                             <div key={step.num} className="pt-5" style={{ borderTop: '2px solid rgba(25,26,31,.85)' }}>
                                 <span className="grid-ref">{step.num}</span>
@@ -163,7 +163,7 @@ const ServicesPage = () => {
                         ))}
                     </div>
 
-                    <div className={`grid sm:grid-cols-3 mt-9 schedule ${reveal(augIn)}`} style={{ transitionDelay: '380ms' }}>
+                    <div className={`grid sm:grid-cols-3 mt-9 schedule ${reveal(augIn)}`} style={{ transitionDelay: '190ms' }}>
                         {AUGMENTATION_TERMS.map((term) => (
                             <div
                                 key={term.label}
