@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { CONTACT } from '../config/contact'
 import { CONTACT_INVITATION, CAPABILITIES, CERTIFICATIONS, PROFILE } from '../content/company'
+import { MailIcon, PhoneIcon, WhatsAppIcon } from './icons'
 
 const Footer = () => {
     const currentYear = new Date().getFullYear()
@@ -20,9 +21,9 @@ const Footer = () => {
     }
 
     const facts = [
-        { label: 'Email', value: CONTACT.email, href: CONTACT.emailHref },
-        { label: 'Phone', value: CONTACT.phone, href: CONTACT.phoneHref },
-        { label: 'WhatsApp', value: CONTACT.whatsapp, href: CONTACT.whatsappHref, external: true },
+        { label: 'Email', value: CONTACT.email, href: CONTACT.emailHref, Icon: MailIcon },
+        { label: 'Phone', value: CONTACT.phone, href: CONTACT.phoneHref, Icon: PhoneIcon },
+        { label: 'WhatsApp', value: CONTACT.whatsapp, href: CONTACT.whatsappHref, external: true, Icon: WhatsAppIcon },
         { label: 'Office', value: CONTACT.location },
         { label: 'Hours', value: CONTACT.hours },
     ]
@@ -49,6 +50,7 @@ const Footer = () => {
                                     rel="noopener noreferrer"
                                     className="btn-outline"
                                 >
+                                    <WhatsAppIcon width={18} height={18} />
                                     WhatsApp
                                 </a>
                             </div>
@@ -61,7 +63,10 @@ const Footer = () => {
                                     className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-4 py-[15px] border-b text-[13.5px]"
                                     style={{ borderColor: 'var(--rule)' }}
                                 >
-                                    <span className="text-ink/55 flex-shrink-0">{fact.label}</span>
+                                    <span className="flex items-center gap-2 text-ink/55 flex-shrink-0">
+                                        {fact.Icon ? <fact.Icon className="flex-shrink-0 text-ink/40" /> : null}
+                                        {fact.label}
+                                    </span>
                                     {fact.href ? (
                                         <a
                                             href={fact.href}

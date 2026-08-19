@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { CONTACT, buildEnquiryMailto } from '../config/contact'
 import { WHAT_TO_SEND, CONTACT_INVITATION } from '../content/company'
 import PageNote from '../components/PageNote'
+import { MailIcon, PhoneIcon, WhatsAppIcon } from '../components/icons'
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -51,13 +52,16 @@ const ContactPage = () => {
                                     rel="noopener noreferrer"
                                     className="btn-ink"
                                 >
+                                    <WhatsAppIcon width={18} height={18} />
                                     WhatsApp us
                                     <span className="leading-none">→</span>
                                 </a>
                                 <a href={CONTACT.phoneHref} className="btn-glass">
+                                    <PhoneIcon width={17} height={17} />
                                     {CONTACT.phone}
                                 </a>
                                 <a href={CONTACT.emailHref} className="btn-outline">
+                                    <MailIcon width={17} height={17} />
                                     Email
                                 </a>
                             </div>
@@ -241,13 +245,16 @@ const ContactPage = () => {
                                 rel="noopener noreferrer"
                                 className="btn-ink"
                             >
+                                <WhatsAppIcon width={18} height={18} />
                                 WhatsApp {CONTACT.whatsapp}
                                 <span className="leading-none">→</span>
                             </a>
                             <a href={CONTACT.phoneHref} className="btn-outline">
+                                <PhoneIcon width={17} height={17} />
                                 Call {CONTACT.phone}
                             </a>
                             <a href={CONTACT.emailHref} className="btn-outline">
+                                <MailIcon width={17} height={17} />
                                 Send Email
                             </a>
                         </div>
