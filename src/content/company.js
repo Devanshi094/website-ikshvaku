@@ -213,12 +213,21 @@ export const LIFECYCLE = [
     },
 ]
 
-/** Named engagements, disclosed with the client's agreement. */
+/**
+ * Named engagements, disclosed with the client's agreement.
+ *
+ * `logoKey` is the filename (without extension) of an asset in
+ * src/assets/logos. Add the file and it renders automatically; until then the
+ * card falls back to the name set in the display face. See that folder's
+ * README — these are third-party trademarks, so only use assets you have
+ * permission to display.
+ */
 export const CLIENTS = [
     {
         ref: 'C1',
         name: 'HDFC Life',
         sector: 'Insurance & Finance',
+        logoKey: 'hdfc-life',
         body:
             "PAN-based automation and verification, plus handwritten form extraction, for one of India's largest life insurers.",
     },
@@ -226,6 +235,7 @@ export const CLIENTS = [
         ref: 'C2',
         name: 'Vervali Systems',
         sector: 'Technology Partner',
+        logoKey: 'vervali-systems',
         body:
             'Handwritten form extraction and multilingual marksheet parsing delivered as a technology partner.',
     },
@@ -233,6 +243,7 @@ export const CLIENTS = [
         ref: 'C3',
         name: 'Heckyl Technologies',
         sector: 'FinTech',
+        logoKey: 'heckyl-technologies',
         body:
             'Domain-specific financial conversational AI over KPI, revenue and year-on-year analytics.',
     },

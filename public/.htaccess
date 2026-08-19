@@ -5,9 +5,16 @@
   RewriteEngine On
   RewriteBase /
 
-  # Every route except /, /services, /projects, /about, /careers and /contact
-  # exists only in the browser. Without this fallback, loading or refreshing
-  # any of them directly returns a 404 from the server.
+  # A missing static file must 404, not fall through to the SPA. Otherwise a
+  # mistyped image or font path returns index.html with a 200 and an HTML
+  # content type, so the browser neither loads it nor cleanly errors — the
+  # failure is invisible until someone notices a blank space on the page.
+  RewriteCond %{REQUEST_URI} \.(?:svg|png|jpe?g|gif|webp|avif|ico|css|js|mjs|map|woff2?|ttf|eot|mp4|webm|pdf|txt|xml|json)$ [NC]
+  RewriteRule ^ - [L]
+
+  # Every route except /, /services, /projects, /about and /contact exists only
+  # in the browser. Without this fallback, loading or refreshing any of them
+  # directly returns a 404 from the server.
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

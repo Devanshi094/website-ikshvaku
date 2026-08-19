@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useReveal, reveal } from '../hooks/useReveal'
 import { FLAGSHIP, CLIENTS } from '../content/company'
+import ClientMark from './ClientMark'
 
 const Work = () => {
     const [sectionRef, isIn] = useReveal(0.08)
@@ -86,7 +87,7 @@ const Work = () => {
                     {CLIENTS.map((client, index) => (
                         <div
                             key={client.ref}
-                            className={`glass glass-hover p-6 sm:p-7 ${reveal(isIn)}`}
+                            className={`glass glass-hover group p-6 sm:p-7 ${reveal(isIn)}`}
                             style={{ transitionDelay: `${Math.min(100 + index * 45, 240)}ms` }}
                         >
                             <div className="flex items-center justify-between">
@@ -95,8 +96,8 @@ const Work = () => {
                                     {client.sector}
                                 </span>
                             </div>
-                            <div className="font-display text-[21px] font-semibold tracking-[-0.025em] mt-5">
-                                {client.name}
+                            <div className="mt-5">
+                                <ClientMark name={client.name} logoKey={client.logoKey} />
                             </div>
                             <p className="text-[14px] leading-[1.6] text-ink/62 mt-3">{client.body}</p>
                         </div>
