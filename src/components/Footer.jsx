@@ -44,15 +44,6 @@ const Footer = () => {
                                     Start a conversation
                                     <span className="leading-none">→</span>
                                 </Link>
-                                <a
-                                    href={CONTACT.whatsappHref}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="btn-outline"
-                                >
-                                    <WhatsAppIcon width={18} height={18} />
-                                    WhatsApp
-                                </a>
                             </div>
                         </div>
 

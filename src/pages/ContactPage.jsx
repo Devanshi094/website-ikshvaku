@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { CONTACT, buildEnquiryMailto } from '../config/contact'
 import { WHAT_TO_SEND, CONTACT_INVITATION } from '../content/company'
 import PageNote from '../components/PageNote'
-import { MailIcon, PhoneIcon, WhatsAppIcon } from '../components/icons'
+import { MailIcon, PhoneIcon } from '../components/icons'
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -46,21 +46,11 @@ const ContactPage = () => {
                                 {CONTACT_INVITATION}
                             </p>
                             <div className="flex flex-wrap gap-3 mt-9 animate-fade-up stagger-3">
-                                <a
-                                    href={CONTACT.whatsappHref}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="btn-ink"
-                                >
-                                    <WhatsAppIcon width={18} height={18} />
-                                    WhatsApp us
-                                    <span className="leading-none">→</span>
-                                </a>
-                                <a href={CONTACT.phoneHref} className="btn-glass">
+                                <a href={CONTACT.phoneHref} className="btn-ink">
                                     <PhoneIcon width={17} height={17} />
                                     {CONTACT.phone}
                                 </a>
-                                <a href={CONTACT.emailHref} className="btn-outline">
+                                <a href={CONTACT.emailHref} className="btn-glass">
                                     <MailIcon width={17} height={17} />
                                     Email
                                 </a>
@@ -239,19 +229,10 @@ const ContactPage = () => {
                             </p>
                         </div>
                         <div className="flex flex-wrap gap-3">
-                            <a
-                                href={CONTACT.whatsappHref}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-ink"
-                            >
-                                <WhatsAppIcon width={18} height={18} />
-                                WhatsApp {CONTACT.whatsapp}
-                                <span className="leading-none">→</span>
-                            </a>
-                            <a href={CONTACT.phoneHref} className="btn-outline">
+                            <a href={CONTACT.phoneHref} className="btn-ink">
                                 <PhoneIcon width={17} height={17} />
                                 Call {CONTACT.phone}
+                                <span className="leading-none">→</span>
                             </a>
                             <a href={CONTACT.emailHref} className="btn-outline">
                                 <MailIcon width={17} height={17} />
